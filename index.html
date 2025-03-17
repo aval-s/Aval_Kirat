@@ -65,7 +65,7 @@
 							<div class="col-md-10 col-md-offset-1">
 								<div class="animate-box">
 									<h1>The Wedding</h1>
-									<h2>Kirat &amp; Aval</h2>
+									<h2>Kirat &amp; <span style="font-family: 'Great Vibes', cursive;">A</span>val</h2>
 									<p><span>17.01.2026</span></p>
 								</div>
 							</div>
@@ -79,7 +79,11 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index.html">H&A</a></h1>
+					<h1 id="fh5co-logo">
+						<a href="index.html">
+							<img src="images/logo.png" alt="H&A Logo"style="float: right; width: 100px; height: 40;">
+						</a>
+					</h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
@@ -102,12 +106,12 @@
 					<div class="col-md-6 col-md-offset-3 text-center">
 						<div class="col-md-5 col-sm-5 col-xs-5 nopadding">
 							<img src="images/groom.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
-							<h3>Harkirat Singh</h3>
+							<h3><span style="font-family: 'Great Vibes', cursive;">H</span>arkirat Singh</h3>
 						</div>
 						<div class="col-md-2 col-sm-2 col-xs-2 nopadding"><h2 class="amp-center"><i class="icon-heart"></i></h2></div>
 						<div class="col-md-5 col-sm-5 col-xs-5 nopadding">
 							<img src="images/bride.png" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
-							<h3>Avalvir Kaur</h3>
+							<h3><span style="font-family: 'Great Vibes', cursive;">A</span>valvir Kaur</h3>
 						</div>
 					</div>
 				</div>
@@ -159,27 +163,28 @@
 		</div>
 
 		<div id="fh5co-started" style="background-image:url(images/bg_2.png);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
+			<div class="overlay"></div>
 			<div class="container">
 				<div class="row animate-box">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section">
 						<h2>Are You Attending?</h2>
-						<p>Please Fill-up the form to notify you that you're attending. Thanks.
+						<p>Please Fill-up the form to notify you that you're attending. Thanks.</p>
 					</div>
 				</div>
 				<div class="row animate-box">
 					<div class="col-md-10 col-md-offset-1">
-						<form class="form-inline">
+						<!-- Paste the form here -->
+						<form class="form-inline" action="https://formspree.io/f/mpwpwlog" method="POST">
 							<div class="col-md-4 col-sm-4">
 								<div class="form-group">
 									<label for="name" class="sr-only">Name</label>
-									<input type="name" class="form-control" id="name" placeholder="Name">
+									<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-4">
 								<div class="form-group">
 									<label for="email" class="sr-only">Email</label>
-									<input type="email" class="form-control" id="email" placeholder="Email">
+									<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-4">
@@ -191,12 +196,13 @@
 			</div>
 		</div>
 		
+		
 		<footer>
 			<div id="footer">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<h2>Kirat &amp; Aval</h2>
+							<h2>Kirat &amp; <span style="font-family: 'Great Vibes', cursive;">A</span>val</h2>
 						</div>
 						<div class="col-md-6 col-md-offset-3 text-center">
 							<p><br>Made with <i class="icon-heart3"></i> </p>

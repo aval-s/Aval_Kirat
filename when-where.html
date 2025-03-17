@@ -132,28 +132,29 @@
 			</div>
 		</div>
 
-		<div id="fh5co-started" style="background-image:url(images/bg_2.png);"data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
+		<div id="fh5co-started" style="background-image:url(images/bg_2.png);" data-stellar-background-ratio="0.5">
+			<div class="overlay"></div>
 			<div class="container">
 				<div class="row animate-box">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section">
 						<h2>Are You Attending?</h2>
-						<p>Please Fill-up the form to notify you that you're attending. Thanks.
+						<p>Please Fill-up the form to notify you that you're attending. Thanks.</p>
 					</div>
 				</div>
 				<div class="row animate-box">
 					<div class="col-md-10 col-md-offset-1">
-						<form class="form-inline">
+						<!-- Paste the form here -->
+						<form class="form-inline" action="https://formspree.io/f/mpwpwlog" method="POST">
 							<div class="col-md-4 col-sm-4">
 								<div class="form-group">
 									<label for="name" class="sr-only">Name</label>
-									<input type="name" class="form-control" id="name" placeholder="Name">
+									<input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-4">
 								<div class="form-group">
 									<label for="email" class="sr-only">Email</label>
-									<input type="email" class="form-control" id="email" placeholder="Email">
+									<input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
 								</div>
 							</div>
 							<div class="col-md-4 col-sm-4">
@@ -166,12 +167,13 @@
 		</div>
 		
 		
+		
 		<footer>
 			<div id="footer">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<h2>Kirat &amp; Aval</h2>
+							<h2>Kirat &amp; <span style="font-family: 'Great Vibes', cursive;">A</span>val</h2>
 						</div>
 						<div class="col-md-6 col-md-offset-3 text-center">
 							<p><br>Made with <i class="icon-heart3"></i> </p>
