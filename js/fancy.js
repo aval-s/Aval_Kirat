@@ -58,10 +58,9 @@
   if (hero) {
     var heroBox = hero.querySelector(".animate-box");
     if (heroBox && heroBox.querySelector("h1")) {
-      var mono = document.createElement("img");
-      mono.src = "images/monogram-light.png";
-      mono.alt = "";
+      var mono = document.createElement("div");
       mono.className = "fancy-monogram";
+      mono.innerHTML = laavanLogo(true);
       heroBox.insertBefore(mono, heroBox.firstChild);
     }
     var cue = document.createElement("a");
@@ -162,14 +161,13 @@
     heart.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); burst(); } });
   }
 
-  // ---------- when & where: up next ----------
-  var days = document.querySelectorAll(".day[data-day]");
-  if (days.length) {
-    var today;
-    try { today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(new Date()); }
-    catch (e) { today = new Date().toISOString().slice(0, 10); }
+  // ---------- when & where: up next (per side) ----------
+  var today;
+  try { today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(new Date()); }
+  catch (e) { today = new Date().toISOString().slice(0, 10); }
+  Array.prototype.forEach.call(document.querySelectorAll(".timeline"), function (tl) {
     var marked = false;
-    Array.prototype.forEach.call(days, function (d) {
+    Array.prototype.forEach.call(tl.querySelectorAll(".day[data-day]"), function (d) {
       var iso = d.getAttribute("data-day");
       if (iso < today) { d.classList.add("is-past"); return; }
       if (!marked) {
@@ -180,7 +178,69 @@
         badge.hidden = false;
       }
     });
+  });
+
+  // ---------- when & where: groom's side / bride's side switch ----------
+  var ww = document.getElementById("fh5co-when-where");
+  var sideBtns = document.querySelectorAll("[data-side-btn]");
+  if (ww && sideBtns.length) {
+    var panels = ww.querySelectorAll(".side-panel");
+    var showSide = function (which, animate) {
+      Array.prototype.forEach.call(sideBtns, function (b) {
+        var on = b.getAttribute("data-side-btn") === which;
+        b.classList.toggle("is-active", on);
+        b.setAttribute("aria-selected", on ? "true" : "false");
+      });
+      Array.prototype.forEach.call(panels, function (p) {
+        var on = p.getAttribute("data-side") === which;
+        p.hidden = !on;
+        if (on && animate) {
+          Array.prototype.forEach.call(p.querySelectorAll(".animate-box"), function (el, i) {
+            el.classList.remove("fadeInUp", "animated");
+            void el.offsetWidth;
+            el.style.animationDelay = Math.min(i, 6) * 0.08 + "s";
+            el.classList.add("fadeInUp", "animated", "item-animate");
+          });
+        }
+      });
+    };
+    var start = new URLSearchParams(location.search).get("side");
+    if (start !== "groom" && start !== "bride") start = ww.getAttribute("data-default-side");
+    showSide(start, false);
+    Array.prototype.forEach.call(sideBtns, function (b) {
+      b.addEventListener("click", function () { showSide(b.getAttribute("data-side-btn"), true); });
+    });
   }
+
+  // ---------- our story: tap a photo to enlarge ----------
+  Array.prototype.forEach.call(document.querySelectorAll("[data-lightbox]"), function (btn) {
+    btn.addEventListener("click", function () {
+      var box = document.createElement("div");
+      box.className = "fancy-lightbox";
+      box.setAttribute("role", "dialog");
+      box.setAttribute("aria-label", "Photo");
+      var img = document.createElement("img");
+      img.src = btn.getAttribute("data-lightbox");
+      img.alt = btn.querySelector("img").alt;
+      var close = document.createElement("button");
+      close.type = "button";
+      close.setAttribute("aria-label", "Close");
+      close.innerHTML = "&times;";
+      box.appendChild(img);
+      box.appendChild(close);
+      document.body.appendChild(box);
+      requestAnimationFrame(function () { box.classList.add("is-open"); });
+      var shut = function () {
+        box.classList.remove("is-open");
+        document.removeEventListener("keydown", onKey);
+        setTimeout(function () { box.remove(); btn.focus(); }, 300);
+      };
+      var onKey = function (e) { if (e.key === "Escape") shut(); };
+      box.addEventListener("click", shut);
+      document.addEventListener("keydown", onKey);
+      close.focus();
+    });
+  });
 
   // ---------- bride & groom: quiz ----------
   var quiz = document.querySelector("[data-quiz]");
