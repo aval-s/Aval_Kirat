@@ -17,3 +17,9 @@
 #fh5co-started .rsvp-form .btn-block[disabled] { opacity: 0.6; }
 #fh5co-started .rsvp-status { min-height: 24px; margin: 12px 0 0; text-align: center; color: #ffd0d0; }
 #fh5co-started .rsvp-thanks { text-align: center; padding: 30px 20px; background: rgba(0, 0, 0, 0.3); color: #fff; font-size: 20px; }
+
+/* Contact page */
+#fh5co-started .contact-intro { max-width: 720px; margin: 0 auto 30px; text-align: center; color: #fff; font-size: 18px; }
+#fh5co-started .contact-intro p { color: rgba(255, 255, 255, 0.95); }
+#fh5co-started .contact-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 20px; }
+#fh5co-started .contact-btn { flex: 1 1 220px; max-width: 300px; margin: 0; }
