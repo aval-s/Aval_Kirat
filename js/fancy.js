@@ -37,9 +37,9 @@
                : arc(106, -60, 2.2) + arc(98, 30, 1.2) + arc(90, 120, 2.2) + arc(82, 210, 1.2)) +
       '<circle cx="' + (120 + 106 * Math.cos(-dot)).toFixed(1) + '" cy="' + (120 + 106 * Math.sin(-dot)).toFixed(1) + '" r="3.5" fill="url(#' + id + ')"/>' +
       (compact
-        ? '<text x="120" y="142" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="62" letter-spacing="2" fill="' + (dark ? "#fff" : "#7d2fb3") + '">K' +
+        ? '<text x="120" y="142" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="62" letter-spacing="2" fill="' + (dark ? "#fff" : "#7d2fb3") + '">H' +
           '<tspan font-family="Pinyon Script, cursive" font-weight="400" font-size="96" fill="url(#' + id + ')" dx="-2" dy="10">&amp;</tspan><tspan dx="0" dy="-10">A</tspan></text>'
-        : '<text x="120" y="134" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="44" letter-spacing="4" fill="' + (dark ? "#fff" : "#7d2fb3") + '">K' +
+        : '<text x="120" y="134" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="44" letter-spacing="4" fill="' + (dark ? "#fff" : "#7d2fb3") + '">H' +
           '<tspan font-family="Pinyon Script, cursive" font-size="52" fill="url(#' + id + ')" dx="2" dy="4">&amp;</tspan><tspan dx="4" dy="-4">A</tspan></text>') +
       (compact ? '' :
         '<path d="M86 150 H154" stroke="url(#' + id + ')" stroke-width="1"/>' +
