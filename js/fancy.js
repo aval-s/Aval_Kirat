@@ -15,13 +15,41 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // ---------- K & A logo in the empty header spot ----------
+  // ---------- Four Laavan logo: four gold rings around K & A ----------
+  var logoCount = 0;
+  function laavanLogo(dark) {
+    var id = "lv" + (++logoCount);
+    var stops = dark
+      ? ["#fff4cf", "#f3dca0", "#d9b25e", "#f7e6b5", "#c9a046"]
+      : ["#b8862f", "#e9cd7c", "#a87726", "#d8b25a", "#9c6c1e"];
+    var arc = function (r, rot, w) {
+      var c = 2 * Math.PI * r;
+      return '<circle cx="120" cy="120" r="' + r + '" fill="none" stroke="url(#' + id + ')" stroke-width="' + w +
+        '" stroke-linecap="round" stroke-dasharray="' + (c * 0.86).toFixed(1) + ' ' + c.toFixed(1) +
+        '" transform="rotate(' + rot + ' 120 120)"/>';
+    };
+    var dot = 60 * Math.PI / 180;
+    return '<svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">' +
+      '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1">' +
+      stops.map(function (c, i) { return '<stop offset="' + [0, .35, .55, .8, 1][i] + '" stop-color="' + c + '"/>'; }).join("") +
+      '</linearGradient></defs>' +
+      arc(106, -60, 2.2) + arc(98, 30, 1.2) + arc(90, 120, 2.2) + arc(82, 210, 1.2) +
+      '<circle cx="' + (120 + 106 * Math.cos(-dot)).toFixed(1) + '" cy="' + (120 + 106 * Math.sin(-dot)).toFixed(1) + '" r="3.5" fill="url(#' + id + ')"/>' +
+      '<text x="120" y="134" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="44" letter-spacing="4" fill="' + (dark ? "#fff" : "#7d2fb3") + '">K' +
+      '<tspan font-family="Pinyon Script, cursive" font-size="52" fill="url(#' + id + ')" dx="2" dy="4">&amp;</tspan><tspan dx="4" dy="-4">A</tspan></text>' +
+      '<path d="M86 150 H154" stroke="url(#' + id + ')" stroke-width="1"/>' +
+      '<text x="120" y="166" text-anchor="middle" font-family="Open Sans, sans-serif" font-weight="700" font-size="8" letter-spacing="3" fill="' + (dark ? "#f3dca0" : "#b8862f") + '">19 · XII · 2026</text>' +
+      '</svg>';
+  }
+
+  // ---------- logo in the empty header spot ----------
   var logo = document.getElementById("fh5co-logo");
   if (logo) {
     var a = document.createElement("a");
     a.className = "fancy-logo";
     a.href = "home" + side + ".html";
-    a.innerHTML = "K <span>&amp;</span> A";
+    a.setAttribute("aria-label", "Kirat & Aval, home");
+    a.innerHTML = laavanLogo(false);
     logo.appendChild(a);
   }
 
@@ -97,15 +125,10 @@
   // ---------- footer: monogram and date ----------
   var footerTitle = document.querySelector("#footer h2");
   if (footerTitle) {
-    var fm = document.createElement("img");
-    fm.src = "images/monogram-white.png";
-    fm.alt = "";
+    var fm = document.createElement("div");
     fm.className = "fancy-footer-mark";
+    fm.innerHTML = laavanLogo(true);
     footerTitle.parentNode.insertBefore(fm, footerTitle);
-    var fd = document.createElement("p");
-    fd.className = "fancy-footer-date";
-    fd.textContent = "19 · 12 · 2026";
-    footerTitle.parentNode.appendChild(fd);
   }
 
   // ---------- home: tap the heart ----------
