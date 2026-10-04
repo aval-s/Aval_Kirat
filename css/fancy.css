@@ -1,5 +1,8 @@
 /* Fancy touches layered on top of the template (remove this file's <link> to switch them off) */
 
+/* Montez's capital A looks like a D: borrow only the A from Dancing Script (loaded with text=A) */
+h1, h2, h3, h4, h5, h6, #fh5co-countdown .countdown span { font-family: "Dancing Script", "Montez", cursive; }
+
 :root {
   --purple: #ac4aea;
   --purple-deep: #4b1d63;
@@ -76,7 +79,7 @@
 /* ---------- home: countdown ---------- */
 #fh5co-countdown { background: var(--diamonds), radial-gradient(70% 90% at 50% 0%, #c370f2, transparent 70%), linear-gradient(135deg, #7d2fb3, var(--purple)); }
 #fh5co-countdown .row > div::before {
-  content: "Counting down to forever"; display: block; font-family: "Montez", cursive; font-size: 40px; color: var(--gold-light); margin-bottom: 26px;
+  content: "Counting down to forever"; display: block; font-family: "Dancing Script", "Montez", cursive; font-size: 40px; color: var(--gold-light); margin-bottom: 26px;
 }
 #fh5co-countdown .countdown span {
   width: 150px; height: 150px; margin: 10px 14px; border-radius: 50%; vertical-align: middle;
@@ -104,9 +107,9 @@
   flex: none; width: 68px; height: 68px; border-radius: 50%; position: relative; z-index: 1;
   display: flex; align-items: center; justify-content: center;
   background: #fff; border: 2px solid var(--gold); color: var(--purple);
-  font: 400 40px/1 "Montez", cursive; box-shadow: 0 0 0 6px #F6FAF7;
+  font: 400 40px/1 "Dancing Script", "Montez", cursive; box-shadow: 0 0 0 6px #F6FAF7;
 }
-.day-text { font: 400 34px/1.1 "Montez", cursive; color: #333; display: flex; flex-direction: column; }
+.day-text { font: 400 34px/1.1 "Dancing Script", "Montez", cursive; color: #333; display: flex; flex-direction: column; }
 .day-text small { font: 600 11px/1.8 "Open Sans", Arial, sans-serif; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
 .day-badge {
   background: linear-gradient(90deg, var(--purple), #c76df5); color: #fff; padding: 7px 14px; border-radius: 99px;
@@ -198,7 +201,7 @@
 .quiz-q.is-current { display: block; animation: fancy-in 0.45s ease; }
 @keyframes fancy-in { from { opacity: 0; transform: translateY(12px); } }
 .quiz-num { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 6px; }
-.quiz-text { font: 400 34px/1.25 "Montez", cursive; color: #fff; margin-bottom: 24px; min-height: 2.5em; }
+.quiz-text { font: 400 34px/1.25 "Dancing Script", "Montez", cursive; color: #fff; margin-bottom: 24px; min-height: 2.5em; }
 .quiz-options { display: flex; justify-content: center; gap: 22px; }
 .quiz-options button {
   background: none; border: 0; padding: 0; color: #fff; cursor: pointer; font: 600 15px/1 "Open Sans", Arial, sans-serif; letter-spacing: 1px;
@@ -212,7 +215,7 @@
 .quiz-options .is-right img { border-color: #6ee7a8; box-shadow: 0 0 0 6px rgba(110, 231, 168, 0.35); }
 .quiz-options .is-wrong img { border-color: #ff8fa3; filter: grayscale(0.6); }
 .quiz-feedback { margin: 18px 0 0; min-height: 1.5em; font-weight: 600; color: var(--gold-light); }
-.quiz-score { font: 400 56px/1 "Montez", cursive; color: var(--gold-light); margin-bottom: 8px; }
+.quiz-score { font: 400 56px/1 "Dancing Script", "Montez", cursive; color: var(--gold-light); margin-bottom: 8px; }
 .quiz-msg { font-size: 18px; margin-bottom: 22px; }
 @media screen and (max-width: 768px) {
   #fh5co-quiz { padding: 4em 0; }
@@ -237,7 +240,7 @@
 #fh5co-started .rsvp-pill input:checked + span { box-shadow: 0 8px 20px -8px rgba(172, 74, 234, 0.9); }
 #fh5co-started .btn-block, #fh5co-started .contact-btn { border-radius: 99px !important; box-shadow: 0 12px 26px -12px rgba(172, 74, 234, 0.9); }
 #fh5co-started .btn-block:hover, #fh5co-started .contact-btn:hover { transform: translateY(-2px); }
-#fh5co-started .rsvp-thanks { border-radius: 20px; border: 1px solid rgba(243, 220, 160, 0.5); font-family: "Montez", cursive; font-size: 34px; }
+#fh5co-started .rsvp-thanks { border-radius: 20px; border: 1px solid rgba(243, 220, 160, 0.5); font-family: "Dancing Script", "Montez", cursive; font-size: 34px; }
 .fancy-confetti { position: fixed; inset: 0; z-index: 9999; pointer-events: none; width: 100%; height: 100%; }
 
 /* ---------- footer ---------- */
@@ -254,7 +257,7 @@
 /* ---------- when & where: side switch ---------- */
 .side-toggle { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; max-width: none; margin: -20px 0 50px !important; padding: 0 15px; box-sizing: border-box; }
 .side-toggle-label { float: none !important; width: auto; }
-.side-toggle-label { font: 400 30px/1.2 "Montez", cursive; color: #555; margin-bottom: 14px; }
+.side-toggle-label { font: 400 30px/1.2 "Dancing Script", "Montez", cursive; color: #555; margin-bottom: 14px; }
 .side-toggle-buttons {
   display: inline-flex; gap: 6px; padding: 6px; border-radius: 99px;
   background: #fff; box-shadow: var(--card-shadow); border: 1px solid rgba(201, 160, 70, 0.4);
@@ -312,7 +315,7 @@
   background: rgba(243, 220, 160, 0.75); transform: rotate(-4deg); box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
 }
 .polaroid img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; }
-.polaroid-caption { display: block; margin-top: 12px; font: 400 26px/1.2 "Montez", cursive; color: #555; text-align: center; }
+.polaroid-caption { display: block; margin-top: 12px; font: 400 26px/1.2 "Dancing Script", "Montez", cursive; color: #555; text-align: center; }
 .moment-text { text-align: left; }
 .moment-flip .moment-text { text-align: right; }
 .moment-num { display: block; font: 500 54px/1 "Cinzel", serif; color: rgba(201, 160, 70, 0.55); margin-bottom: 4px; }

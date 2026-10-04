@@ -47,7 +47,8 @@
 	
 	<link rel="stylesheet" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital@1&family=Cinzel:wght@500;700&family=Pinyon+Script&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/fancy.css?v=7">
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&text=A&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/fancy.css?v=8">
 
 
 	<!-- Modernizr JS -->
@@ -71,7 +72,7 @@
 							<div class="col-md-10 col-md-offset-1">
 								<div class="animate-box">
 									<h1>The Wedding</h1>
-									<h2>Kirat &amp; <span style="font-family: 'Great Vibes', cursive;">A</span>val</h2>
+									<h2>Kirat &amp; Aval</h2>
 									<p><span>19.12.2026</span></p>
 								</div>
 							</div>
@@ -114,13 +115,13 @@
 				<div class="row row-bottom-padded-md animate-box">
 					<div class="col-md-6 col-md-offset-3 text-center">
 						<div class="col-md-5 col-sm-5 col-xs-5 nopadding">
-							<img src="images/groom.jpg" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
-							<h3><span style="font-family: 'Great Vibes', cursive;">H</span>arkirat Singh</h3>
+							<img src="images/groom.jpg" class="img-responsive" alt="Harkirat Singh">
+							<h3>Harkirat Singh</h3>
 						</div>
 						<div class="col-md-2 col-sm-2 col-xs-2 nopadding"><h2 class="amp-center"><i class="icon-heart"></i></h2></div>
 						<div class="col-md-5 col-sm-5 col-xs-5 nopadding">
-							<img src="images/bride.png" class="img-responsive" alt="Free HTML5 Bootstrap Template by FreeHTML5.co">
-							<h3><span style="font-family: 'Great Vibes', cursive;">A</span>valvir Kaur</h3>
+							<img src="images/bride.png" class="img-responsive" alt="Avalvir Kaur">
+							<h3>Avalvir Kaur</h3>
 						</div>
 					</div>
 				</div>
@@ -143,27 +144,30 @@
 						<span id="minutes"></span>
 						<span id="seconds"></span>
 						<script>
-							var countDownDate = new Date("Dec 19, 2026 15:37:25").getTime();
-					
-							var x = setInterval(function() {
-								var now = new Date().getTime();
-								var distance = countDownDate - now;
-					
+							var countDownDate = new Date("2026-12-19T10:00:00+05:30").getTime();
+
+							function tick() {
+								var distance = countDownDate - new Date().getTime();
+
+								if (distance < 0) {
+									clearInterval(timer);
+									document.querySelector(".countdown").innerHTML = "We are Married!";
+									return;
+								}
+
 								var days = Math.floor(distance / (1000 * 60 * 60 * 24));
 								var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
 								var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 								var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-					
+
 								document.getElementById("days").innerHTML = days + " <small>days</small>";
 								document.getElementById("hours").innerHTML = hours + " <small>hours</small>";
 								document.getElementById("minutes").innerHTML = minutes + " <small>minutes</small>";
 								document.getElementById("seconds").innerHTML = seconds + " <small>seconds</small>";
-					
-								if (distance < 0) {
-									clearInterval(x);
-									document.getElementById("demo").innerHTML = "We are Married!";
-								}
-							}, 1000);
+							}
+
+							var timer = setInterval(tick, 1000);
+							tick();
 						</script>
 					
 					</p>
@@ -176,7 +180,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 text-center">
-							<h2>Kirat &amp; <span style="font-family: 'Great Vibes', cursive;">A</span>val</h2>
+							<h2>Kirat &amp; Aval</h2>
 						</div>
 						<div class="col-md-6 col-md-offset-3 text-center">
 							<p><br>Made with <i class="icon-heart3"></i> </p>
@@ -194,14 +198,12 @@
 	</div>
 	<!-- END fh5co-wrapper -->
 
-	<!-- Google Map -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCefOgb1ZWqYtj7raVSmN4PL2WkTrc-KyA&sensor=false"></script>
 	<!-- jQuery -->
 	<script src="dist/scripts.min.js"></script>
 
 
 
-	<script src="js/fancy.js?v=7"></script>
+	<script src="js/fancy.js?v=8"></script>
 	</body>
 </html>
 
