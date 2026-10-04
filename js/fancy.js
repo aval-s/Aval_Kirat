@@ -37,10 +37,10 @@
                : arc(106, -60, 2.2) + arc(98, 30, 1.2) + arc(90, 120, 2.2) + arc(82, 210, 1.2)) +
       '<circle cx="' + (120 + 106 * Math.cos(-dot)).toFixed(1) + '" cy="' + (120 + 106 * Math.sin(-dot)).toFixed(1) + '" r="3.5" fill="url(#' + id + ')"/>' +
       (compact
-        ? '<text x="120" y="142" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="62" letter-spacing="2" fill="' + (dark ? "#fff" : "#7d2fb3") + '">H' +
-          '<tspan font-family="Pinyon Script, cursive" font-weight="400" font-size="96" fill="url(#' + id + ')" dx="-2" dy="10">&amp;</tspan><tspan dx="0" dy="-10">A</tspan></text>'
-        : '<text x="120" y="134" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="44" letter-spacing="4" fill="' + (dark ? "#fff" : "#7d2fb3") + '">H' +
-          '<tspan font-family="Pinyon Script, cursive" font-size="52" fill="url(#' + id + ')" dx="2" dy="4">&amp;</tspan><tspan dx="4" dy="-4">A</tspan></text>') +
+        ? '<text x="120" y="142" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="54" letter-spacing="0" fill="' + (dark ? "#fff" : "#7d2fb3") + '">H' +
+          '<tspan font-family="Pinyon Script, cursive" font-weight="400" font-size="74" fill="url(#' + id + ')" dx="-9" dy="6">&amp;</tspan><tspan dx="-11" dy="-6">A</tspan></text>'
+        : '<text x="120" y="134" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="42" letter-spacing="0" fill="' + (dark ? "#fff" : "#7d2fb3") + '">H' +
+          '<tspan font-family="Pinyon Script, cursive" font-size="56" fill="url(#' + id + ')" dx="-7" dy="5">&amp;</tspan><tspan dx="-8" dy="-5">A</tspan></text>') +
       (compact ? '' :
         '<path d="M86 150 H154" stroke="url(#' + id + ')" stroke-width="1"/>' +
         '<text x="120" y="166" text-anchor="middle" font-family="Open Sans, sans-serif" font-weight="700" font-size="8" letter-spacing="3" fill="' + (dark ? "#f3dca0" : "#b8862f") + '">19 · XII · 2026</text>') +
