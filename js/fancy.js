@@ -58,36 +58,6 @@
     logo.appendChild(a);
   }
 
-  // ---------- phones: always-visible menu button ----------
-  // It carries the template's toggle class, so the template's own open/close logic
-  // (bound on DOM ready, after this script runs) works with it unchanged.
-  var fab = document.createElement("a");
-  fab.href = "#";
-  fab.className = "js-fh5co-nav-toggle fancy-menu-btn";
-  fab.setAttribute("aria-label", "Open menu");
-  fab.innerHTML = '<span class="fancy-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="fancy-menu-label">Menu</span>';
-  fab.addEventListener("click", function (e) { e.preventDefault(); fixMenu(); });
-  document.body.appendChild(fab);
-  // the bundled template script builds the slide-out menu more than once; keep a single copy
-  // The template builds the slide-out menu (more than once) inside the page wrapper, which it slides
-  // sideways with a transform; that pins the "fixed" menu to the top of the page, so after scrolling it
-  // opened off-screen. Keep one copy and hang it on <body>. Runs as soon as the DOM is ready, and again
-  // on the menu tap itself, so a guest on a slow connection can't beat it.
-  function fixMenu() {
-    var menus = document.querySelectorAll("#offcanvas-menu");
-    for (var i = 1; i < menus.length; i++) menus[i].parentNode.removeChild(menus[i]);
-    if (menus[0] && menus[0].parentNode !== document.body) document.body.appendChild(menus[0]);
-  }
-  document.addEventListener("DOMContentLoaded", function () { setTimeout(fixMenu, 0); });
-  window.addEventListener("load", fixMenu);
-  if ("MutationObserver" in window) {
-    new MutationObserver(function () {
-      var open = document.body.classList.contains("fh5co-offcanvas");
-      fab.querySelector(".fancy-menu-label").textContent = open ? "Close" : "Menu";
-      fab.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
-  }
-
   // ---------- phones: bottom tab bar + "next page" button ----------
   var navLinks = document.querySelectorAll("#fh5co-primary-menu > li > a");
   if (navLinks.length) {
