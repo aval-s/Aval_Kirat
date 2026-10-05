@@ -352,3 +352,40 @@ h1, h2, h3, h4, h5, h6, #fh5co-countdown .countdown span { font-family: "Dancing
   .event { grid-template-columns: 1fr; }
   .event-art { width: auto; height: 210px; margin: 12px 12px 0; }
 }
+
+/* ---------- phones: floating menu button + styled slide-out menu ---------- */
+.fancy-menu-btn { display: none; }
+@media screen and (max-width: 768px) {
+  #fh5co-header-section .js-fh5co-nav-toggle { display: none !important; }
+  .fancy-menu-btn {
+    position: fixed; top: 16px; right: 16px; z-index: 2147483000;
+    display: inline-flex; align-items: center; gap: 9px; height: 46px; padding: 0 18px 0 15px;
+    border-radius: 99px; text-decoration: none !important;
+    background: rgba(255, 255, 255, 0.94); border: 1.5px solid rgba(201, 160, 70, 0.75);
+    box-shadow: 0 10px 24px -10px rgba(46, 15, 66, 0.55);
+    color: var(--purple) !important; font: 700 13px/1 "Open Sans", Arial, sans-serif; letter-spacing: 2px; text-transform: uppercase;
+    -webkit-tap-highlight-color: transparent; transition: transform 0.45s ease, background 0.3s, color 0.3s;
+    animation: fancy-menu-hint 2.6s ease-in-out 1.2s 2;
+  }
+  .fancy-burger { display: inline-flex; flex-direction: column; gap: 4px; }
+  .fancy-burger i { display: block; width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform 0.3s, opacity 0.3s; }
+  /* the page slides 240px left when the menu opens; the button rides along so it stays beside the menu */
+  .fh5co-offcanvas .fancy-menu-btn { transform: translateX(-240px); background: var(--purple); color: #fff !important; border-color: var(--purple); animation: none; }
+  .fh5co-offcanvas .fancy-burger i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .fh5co-offcanvas .fancy-burger i:nth-child(2) { opacity: 0; }
+  .fh5co-offcanvas .fancy-burger i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  @keyframes fancy-menu-hint { 0%, 100% { box-shadow: 0 10px 24px -10px rgba(46, 15, 66, 0.55); } 50% { box-shadow: 0 0 0 9px rgba(172, 74, 234, 0.18), 0 10px 24px -10px rgba(46, 15, 66, 0.55); } }
+
+  #offcanvas-menu {
+    background: var(--diamonds), linear-gradient(160deg, #2e0f42, var(--purple-deep) 55%, #6a2896);
+    padding: 90px 22px 30px; border-left: 2px solid var(--gold);
+  }
+  #offcanvas-menu ul { list-style: none; margin: 0; padding: 0; }
+  #offcanvas-menu ul li { border-bottom: 1px solid rgba(243, 220, 160, 0.18); }
+  #offcanvas-menu ul li a {
+    display: block; padding: 15px 4px; color: rgba(255, 255, 255, 0.88) !important;
+    font: 400 26px/1.2 "Dancing Script", "Montez", cursive; text-decoration: none;
+  }
+  #offcanvas-menu ul li.active a { color: var(--gold-light) !important; }
+  #offcanvas-menu ul li.active a::before { content: "\2726  "; font-size: 14px; vertical-align: middle; }
+}

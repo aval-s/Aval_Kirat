@@ -58,6 +58,29 @@
     logo.appendChild(a);
   }
 
+  // ---------- phones: always-visible menu button ----------
+  // It carries the template's toggle class, so the template's own open/close logic
+  // (bound on DOM ready, after this script runs) works with it unchanged.
+  var fab = document.createElement("a");
+  fab.href = "#";
+  fab.className = "js-fh5co-nav-toggle fancy-menu-btn";
+  fab.setAttribute("aria-label", "Open menu");
+  fab.innerHTML = '<span class="fancy-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="fancy-menu-label">Menu</span>';
+  fab.addEventListener("click", function (e) { e.preventDefault(); });
+  document.body.appendChild(fab);
+  // the bundled template script builds the slide-out menu more than once; keep a single copy
+  window.addEventListener("load", function () {
+    var menus = document.querySelectorAll("#offcanvas-menu");
+    for (var i = 1; i < menus.length; i++) menus[i].parentNode.removeChild(menus[i]);
+  });
+  if ("MutationObserver" in window) {
+    new MutationObserver(function () {
+      var open = document.body.classList.contains("fh5co-offcanvas");
+      fab.querySelector(".fancy-menu-label").textContent = open ? "Close" : "Menu";
+      fab.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  }
+
   // ---------- hero: monogram, scroll cue, petals ----------
   var hero = document.querySelector(".fh5co-hero");
   if (hero) {
