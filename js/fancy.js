@@ -66,23 +66,71 @@
   fab.className = "js-fh5co-nav-toggle fancy-menu-btn";
   fab.setAttribute("aria-label", "Open menu");
   fab.innerHTML = '<span class="fancy-burger" aria-hidden="true"><i></i><i></i><i></i></span><span class="fancy-menu-label">Menu</span>';
-  fab.addEventListener("click", function (e) { e.preventDefault(); });
+  fab.addEventListener("click", function (e) { e.preventDefault(); fixMenu(); });
   document.body.appendChild(fab);
   // the bundled template script builds the slide-out menu more than once; keep a single copy
-  window.addEventListener("load", function () {
+  // The template builds the slide-out menu (more than once) inside the page wrapper, which it slides
+  // sideways with a transform; that pins the "fixed" menu to the top of the page, so after scrolling it
+  // opened off-screen. Keep one copy and hang it on <body>. Runs as soon as the DOM is ready, and again
+  // on the menu tap itself, so a guest on a slow connection can't beat it.
+  function fixMenu() {
     var menus = document.querySelectorAll("#offcanvas-menu");
     for (var i = 1; i < menus.length; i++) menus[i].parentNode.removeChild(menus[i]);
-    // the template puts the menu inside the page wrapper, which it slides sideways with a transform;
-    // that pins the "fixed" menu to the top of the page, so after scrolling it opened off-screen.
-    // Hang it on <body> instead so it always slides in over the current view.
-    if (menus[0]) document.body.appendChild(menus[0]);
-  });
+    if (menus[0] && menus[0].parentNode !== document.body) document.body.appendChild(menus[0]);
+  }
+  document.addEventListener("DOMContentLoaded", function () { setTimeout(fixMenu, 0); });
+  window.addEventListener("load", fixMenu);
   if ("MutationObserver" in window) {
     new MutationObserver(function () {
       var open = document.body.classList.contains("fh5co-offcanvas");
       fab.querySelector(".fancy-menu-label").textContent = open ? "Close" : "Menu";
       fab.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     }).observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  }
+
+  // ---------- phones: bottom tab bar + "next page" button ----------
+  var navLinks = document.querySelectorAll("#fh5co-primary-menu > li > a");
+  if (navLinks.length) {
+    var TABS = {   // keyed by page name without the -ava suffix
+      "home":        ["Home",    '<path d="M3 11 12 4l9 7"/><path d="M5.5 9.5V20h5v-6h3v6h5V9.5"/>'],
+      "groom-bride": ["Couple",  '<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'],
+      "story":       ["Story",   '<rect x="3.5" y="5.5" width="17" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="m20.5 16-5-5-8 8.5"/>'],
+      "when-where":  ["Events",  '<rect x="3.5" y="5" width="17" height="15" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'],
+      "rsvp":        ["RSVP",    '<path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/>'],
+      "contact":     ["Contact", '<path d="M20 15.5a8 8 0 0 1-11.6 2.1L4 19l1.4-4.2A8 8 0 1 1 20 15.5z"/>']
+    };
+    var here = location.pathname.split("/").pop() || "home.html";
+    var key = function (href) { return href.replace(/(-ava)?\.html.*$/, ""); };
+    var tabbar = document.createElement("nav");
+    tabbar.className = "fancy-tabbar";
+    tabbar.setAttribute("aria-label", "Pages");
+    var order = [];
+    Array.prototype.forEach.call(navLinks, function (a) {
+      var href = a.getAttribute("href"), k = key(href), t = TABS[k];
+      if (!t) return;
+      order.push({ href: href, label: t[0], k: k });
+      var link = document.createElement("a");
+      link.href = href;
+      if (key(here) === k) { link.className = "is-current"; link.setAttribute("aria-current", "page"); }
+      if (k === "rsvp") link.className += " is-rsvp";
+      link.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + t[1] + "</svg><span>" + t[0] + "</span>";
+      tabbar.appendChild(link);
+    });
+    document.body.appendChild(tabbar);
+    document.body.classList.add("has-tabbar");
+
+    // a clear "next page" button above the footer, so scrolling guests are led onward
+    var idx = -1;
+    order.forEach(function (o, i) { if (o.k === key(here)) idx = i; });
+    var footer = document.querySelector("footer");
+    if (idx >= 0 && idx < order.length - 1 && footer) {
+      var nxt = order[idx + 1], wrap = document.createElement("div");
+      wrap.className = "fancy-next";
+      var names = { "Couple": "Meet the Bride & Groom", "Story": "Our Story", "Events": "When & Where",
+                    "RSVP": "RSVP", "Contact": "Questions? Contact us" };
+      wrap.innerHTML = '<span class="fancy-next-kicker">Up next</span><a href="' + nxt.href + '">' + (names[nxt.label] || nxt.label) + ' <b aria-hidden="true">&rarr;</b></a>';
+      footer.parentNode.insertBefore(wrap, footer);
+    }
   }
 
   // ---------- hero: monogram, scroll cue, petals ----------
