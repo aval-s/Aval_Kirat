@@ -72,6 +72,10 @@
   window.addEventListener("load", function () {
     var menus = document.querySelectorAll("#offcanvas-menu");
     for (var i = 1; i < menus.length; i++) menus[i].parentNode.removeChild(menus[i]);
+    // the template puts the menu inside the page wrapper, which it slides sideways with a transform;
+    // that pins the "fixed" menu to the top of the page, so after scrolling it opened off-screen.
+    // Hang it on <body> instead so it always slides in over the current view.
+    if (menus[0]) document.body.appendChild(menus[0]);
   });
   if ("MutationObserver" in window) {
     new MutationObserver(function () {
